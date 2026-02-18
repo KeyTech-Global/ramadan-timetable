@@ -8,7 +8,7 @@ A complete Ramadan website with:
 - Daily, weekly, monthly, and custom date ranges
 
 ## 🌐 Live Demo
-[Add your GitHub Pages URL here after deployment]
+(https://keytech-global.github.io/ramadan-timetable/)
 
 ## 🚀 Features
 - Search any city worldwide with suggestions
