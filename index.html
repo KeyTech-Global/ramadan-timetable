@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>🌙 Ramadan Complete · All Languages Fixed</title>
+    <title>🌙 Ramadan Complete · Fully Responsive · All Views Fixed</title>
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,14 +61,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px 16px;
+            padding: 10px;
             color: var(--text-primary);
             position: relative;
             overflow-x: hidden;
             transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
         }
 
-        /* Floating decorations */
+        /* Floating decorations - hidden on small devices */
         .lantern-bg {
             position: fixed;
             pointer-events: none;
@@ -80,23 +80,35 @@
             opacity: 0.15;
             animation: float 18s infinite alternate ease-in-out;
         }
+        @media (max-width: 768px) {
+            .lantern {
+                display: none;
+            }
+        }
         @keyframes float {
             0% { transform: translateY(0px) rotate(0deg); }
             100% { transform: translateY(-30px) rotate(5deg); }
         }
 
         .container {
-            max-width: 1300px;
+            max-width: 1400px;
             width: 100%;
             background: rgba(18, 30, 40, 0.85);
             backdrop-filter: blur(18px) saturate(200%);
             -webkit-backdrop-filter: blur(18px);
-            border-radius: 56px;
-            padding: 28px 24px;
+            border-radius: 40px;
+            padding: 20px;
             border: 1px solid var(--border);
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             z-index: 10;
             transition: all var(--transition-speed);
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 28px 24px;
+                border-radius: 56px;
+            }
         }
 
         body.light-mode .container {
@@ -109,52 +121,66 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            gap: 15px;
         }
         .title-lantern {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
         .title-lantern i {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--accent);
         }
         .title-lantern h1 {
             font-family: 'Amiri', serif;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             background: linear-gradient(145deg, #ffeac2, var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        @media (min-width: 768px) {
+            .title-lantern i { font-size: 2.2rem; }
+            .title-lantern h1 { font-size: 2.2rem; }
+        }
 
-        /* Language dropdown - improved */
+        /* Language dropdown */
         .lang-dropdown {
             position: relative;
             display: inline-block;
+            width: 100%;
+            max-width: 200px;
         }
         .lang-select-btn {
             background: var(--bg-card);
             border: 1px solid var(--accent);
             border-radius: 40px;
-            padding: 12px 24px;
+            padding: 10px 15px;
             color: var(--text-primary);
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 10px;
-            min-width: 180px;
+            justify-content: space-between;
+            gap: 5px;
+            width: 100%;
+        }
+        .lang-select-btn span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .lang-dropdown-content {
             display: none;
             position: absolute;
             right: 0;
             background: var(--bg-card);
-            min-width: 300px;
-            max-height: 400px;
+            min-width: 250px;
+            max-height: 300px;
             overflow-y: auto;
-            border-radius: 24px;
+            border-radius: 20px;
             border: 2px solid var(--accent);
             z-index: 1000;
             margin-top: 5px;
@@ -164,14 +190,15 @@
             display: block;
         }
         .lang-option {
-            padding: 15px 20px;
+            padding: 12px 15px;
             cursor: pointer;
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             color: var(--text-primary);
             transition: 0.2s;
+            font-size: 0.9rem;
         }
         .lang-option:hover {
             background: var(--accent);
@@ -181,22 +208,26 @@
         /* Current date */
         .current-date-large {
             text-align: center;
-            margin: 20px 0;
-            padding: 20px;
+            margin: 15px 0;
+            padding: 15px;
             background: var(--bg-card);
-            border-radius: 48px;
+            border-radius: 30px;
             border: 2px solid var(--accent);
         }
         .gregorian-date {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 600;
             font-family: 'Poppins', sans-serif;
         }
         .hijri-date {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: var(--accent);
             font-family: 'Amiri', serif;
-            margin-top: 8px;
+            margin-top: 5px;
+        }
+        @media (min-width: 768px) {
+            .gregorian-date { font-size: 2rem; }
+            .hijri-date { font-size: 1.5rem; }
         }
 
         /* Location search */
@@ -210,9 +241,9 @@
             left: 0;
             right: 0;
             background: var(--suggestion-bg);
-            border-radius: 24px;
-            margin-top: 8px;
-            max-height: 350px;
+            border-radius: 20px;
+            margin-top: 5px;
+            max-height: 250px;
             overflow-y: auto;
             z-index: 2000;
             display: none;
@@ -220,61 +251,85 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.5);
         }
         .suggestion-item {
-            padding: 15px 20px;
+            padding: 12px 15px;
             cursor: pointer;
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             transition: 0.2s;
             color: var(--suggestion-text);
+            font-size: 0.9rem;
         }
         .suggestion-item:hover {
             background: var(--suggestion-hover);
         }
         .suggestion-detail {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             opacity: 0.8;
+        }
+
+        /* Location card */
+        .location-card {
+            background: var(--bg-card);
+            border-radius: 30px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        @media (min-width: 768px) {
+            .location-card { border-radius: 48px; padding: 24px; }
         }
 
         /* Time cards */
         .time-cards {
             display: flex;
-            gap: 24px;
+            gap: 15px;
             flex-wrap: wrap;
-            margin: 30px 0;
+            margin: 20px 0;
         }
         .card {
-            flex: 1 1 250px;
+            flex: 1 1 200px;
             background: var(--bg-card);
-            border-radius: 42px;
-            padding: 30px 20px;
+            border-radius: 30px;
+            padding: 20px 10px;
             text-align: center;
             border: 2px solid var(--accent);
             transition: 0.4s;
         }
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 30px var(--accent-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px var(--accent-dark);
         }
         .card .time {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 700;
             font-family: 'Amiri', serif;
             color: var(--accent);
+        }
+        .card .label {
+            font-size: 1rem;
+        }
+        .card .sub {
+            font-size: 0.8rem;
+        }
+        @media (min-width: 768px) {
+            .card { padding: 30px 20px; }
+            .card .time { font-size: 3.5rem; }
+            .card .label { font-size: 1.2rem; }
+            .card .sub { font-size: 0.9rem; }
         }
 
         /* Date range picker */
         .date-range-picker {
             background: var(--bg-card);
-            border-radius: 48px;
-            padding: 24px;
-            margin: 20px 0;
+            border-radius: 30px;
+            padding: 20px;
+            margin: 15px 0;
             border: 1px solid var(--accent);
         }
         .range-controls {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
@@ -283,85 +338,104 @@
             background: var(--input-bg);
             border: 1px solid var(--accent);
             border-radius: 40px;
-            padding: 12px 20px;
+            padding: 10px 15px;
             color: var(--text-primary);
-            font-size: 1rem;
+            font-size: 0.9rem;
+            width: 100%;
+            max-width: 200px;
         }
 
         /* View buttons */
         .view-buttons {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 20px 0;
+            margin: 15px 0;
         }
         .view-btn {
             background: var(--bg-card);
             border: 1px solid var(--accent);
             border-radius: 40px;
-            padding: 12px 25px;
+            padding: 8px 15px;
             color: var(--text-primary);
             cursor: pointer;
             font-weight: 500;
             transition: 0.2s;
+            font-size: 0.9rem;
+            flex: 1 1 auto;
+            min-width: 80px;
+        }
+        @media (min-width: 768px) {
+            .view-btn { padding: 12px 25px; font-size: 1rem; min-width: 120px; }
         }
         .view-btn:hover, .view-btn.active {
             background: var(--accent);
             color: #000;
         }
 
-        /* Timetable */
+        /* Timetable - Responsive */
         .timetable-container {
             background: var(--bg-card);
-            border-radius: 48px;
-            padding: 24px;
-            margin: 20px 0;
+            border-radius: 30px;
+            padding: 15px;
+            margin: 15px 0;
             border: 2px solid var(--accent);
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.95rem;
+            font-size: 0.8rem;
+            min-width: 500px;
+        }
+        @media (min-width: 768px) {
+            table { font-size: 0.95rem; min-width: 600px; }
         }
         th {
             background: var(--accent);
             color: #000;
-            padding: 15px;
+            padding: 10px;
             font-weight: 600;
         }
         td {
-            padding: 12px;
+            padding: 8px;
             text-align: center;
             border-bottom: 1px solid var(--border);
         }
 
-        /* Action buttons */
+        /* Action buttons - Responsive */
         .action-buttons {
             display: flex;
-            gap: 15px;
+            gap: 8px;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 20px 0;
+            margin: 15px 0;
         }
         .action-btn {
             background: var(--bg-card);
             border: 1px solid var(--accent);
             border-radius: 40px;
-            padding: 14px 30px;
+            padding: 10px 12px;
             color: var(--text-primary);
             cursor: pointer;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
             transition: 0.2s;
+            font-size: 0.8rem;
+            flex: 1 1 auto;
+            justify-content: center;
+        }
+        @media (min-width: 768px) {
+            .action-btn { padding: 14px 20px; font-size: 0.9rem; gap: 8px; }
         }
         .action-btn:hover {
             background: var(--accent);
             color: #000;
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         /* Hidden image generator */
@@ -369,19 +443,19 @@
             position: fixed;
             top: -9999px;
             left: -9999px;
-            width: 1200px;
+            width: 1000px;
             background: linear-gradient(145deg, #0e1f2b, #1b3241);
-            padding: 50px;
-            border-radius: 50px;
+            padding: 40px;
+            border-radius: 40px;
             font-family: 'Inter', sans-serif;
             color: white;
         }
         .image-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         .image-header h2 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #f7c16a;
             font-family: 'Amiri', serif;
         }
@@ -392,18 +466,29 @@
         .image-table th {
             background: #f7c16a;
             color: #000;
-            padding: 15px;
-            font-size: 1.1rem;
+            padding: 12px;
+            font-size: 1rem;
         }
         .image-table td {
-            padding: 12px;
+            padding: 10px;
             border-bottom: 1px solid #f7c16a;
             color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 15px;
+            opacity: 0.8;
+            font-size: 0.8rem;
+        }
+        @media (min-width: 768px) {
+            footer { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Floating lanterns -->
+    <!-- Floating lanterns - hidden on mobile -->
     <div class="lantern-bg">
         <div class="lantern" style="top: 10%; left: 5%;">🏮</div>
         <div class="lantern" style="top: 70%; left: 90%;">🏮</div>
@@ -411,12 +496,12 @@
     </div>
 
     <div class="container">
-        <!-- Header with language dropdown -->
+        <!-- Header -->
         <div class="smart-header">
             <div class="title-lantern">
                 <i class="fas fa-moon"></i>
                 <i class="fas fa-lantern"></i>
-                <h1 id="mainTitle">Ramadan Complete</h1>
+                <h1 id="mainTitle">Ramadan</h1>
             </div>
             <div class="lang-dropdown">
                 <button class="lang-select-btn" id="langDropdownBtn">
@@ -428,40 +513,40 @@
             </div>
         </div>
 
-        <!-- Current date display -->
+        <!-- Current date -->
         <div class="current-date-large">
             <div class="gregorian-date" id="currentGregorian">Loading...</div>
             <div class="hijri-date" id="currentHijri">Loading...</div>
         </div>
 
         <!-- Location search -->
-        <div style="background: var(--bg-card); border-radius: 48px; padding: 24px; margin-bottom: 30px;">
-            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                <i class="fas fa-search-location" style="color: var(--accent); font-size: 1.5rem;"></i>
-                <div class="search-wrapper" style="flex: 3;">
-                    <input type="text" id="cityInput" placeholder="Search city worldwide..." 
-                           style="width: 100%; background: var(--input-bg); border: 2px solid var(--accent); border-radius: 50px; padding: 16px 25px; color: var(--text-primary); font-size: 1rem;">
+        <div class="location-card">
+            <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 10px;">
+                <i class="fas fa-search-location" style="color: var(--accent); font-size: 1.2rem;"></i>
+                <div class="search-wrapper" style="flex: 3; min-width: 200px;">
+                    <input type="text" id="cityInput" placeholder="Search city..." 
+                           style="width: 100%; background: var(--input-bg); border: 2px solid var(--accent); border-radius: 50px; padding: 12px 15px; color: var(--text-primary); font-size: 0.9rem;">
                     <div id="suggestionsBox" class="suggestions-box"></div>
                 </div>
-                <button id="searchBtn" class="view-btn"><i class="fas fa-search"></i></button>
-                <button id="geoBtn" class="view-btn"><i class="fas fa-crosshairs"></i></button>
+                <button id="searchBtn" class="view-btn" style="padding: 10px 12px;"><i class="fas fa-search"></i></button>
+                <button id="geoBtn" class="view-btn" style="padding: 10px 12px;"><i class="fas fa-crosshairs"></i></button>
             </div>
-            <div style="margin-top: 15px; display: flex; gap: 20px; flex-wrap: wrap;">
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; font-size: 0.9rem;">
                 <span><i class="fas fa-map-marker-alt"></i> <span id="cityName">Loading...</span></span>
                 <span><i class="fas fa-clock"></i> <span id="timezone"></span></span>
             </div>
         </div>
 
-        <!-- Main prayer times - CORRECTED: Sehri shows Imsak, Iftar shows Maghrib -->
+        <!-- Main prayer times -->
         <div class="time-cards">
             <div class="card">
-                <i class="fas fa-cloud-sun" style="font-size: 2.5rem; color: var(--accent);"></i>
+                <i class="fas fa-cloud-sun" style="font-size: 2rem; color: var(--accent);"></i>
                 <div class="label" id="labelSehri">SEHRI</div>
                 <div class="time" id="sehriTime">--:--</div>
                 <div class="sub" id="subSehri">last time to eat</div>
             </div>
             <div class="card">
-                <i class="fas fa-sun" style="font-size: 2.5rem; color: var(--accent);"></i>
+                <i class="fas fa-sun" style="font-size: 2rem; color: var(--accent);"></i>
                 <div class="label" id="labelIftar">IFTAR</div>
                 <div class="time" id="iftarTime">--:--</div>
                 <div class="sub" id="subIftar">break fast time</div>
@@ -471,15 +556,15 @@
         <!-- Date range picker -->
         <div class="date-range-picker">
             <div class="range-controls">
-                <div>
-                    <label id="fromLabel">From:</label>
+                <div style="width: 100%; max-width: 200px;">
+                    <label id="fromLabel" style="font-size: 0.8rem;">From:</label>
                     <input type="date" id="startDate" class="date-input">
                 </div>
-                <div>
-                    <label id="toLabel">To:</label>
+                <div style="width: 100%; max-width: 200px;">
+                    <label id="toLabel" style="font-size: 0.8rem;">To:</label>
                     <input type="date" id="endDate" class="date-input">
                 </div>
-                <button class="view-btn" id="applyCustomRange"><i class="fas fa-calendar-check"></i> <span id="applyRangeText">Apply Range</span></button>
+                <button class="view-btn" id="applyCustomRange" style="padding: 10px 15px;"><i class="fas fa-calendar-check"></i> <span id="applyRangeText">Apply</span></button>
             </div>
         </div>
 
@@ -487,35 +572,25 @@
         <div class="view-buttons">
             <button class="view-btn active" id="dailyView">Daily</button>
             <button class="view-btn" id="weeklyView">Weekly</button>
-            <button class="view-btn" id="monthlyView">Monthly (30 days)</button>
+            <button class="view-btn" id="monthlyView">Monthly</button>
             <button class="view-btn" id="customViewBtn">Custom</button>
         </div>
 
-        <!-- Timetable display -->
+        <!-- Timetable -->
         <div class="timetable-container">
             <div id="timetableDisplay"></div>
         </div>
 
         <!-- Action buttons -->
         <div class="action-buttons">
-            <button class="action-btn" id="downloadImageBtn">
-                <i class="fas fa-download"></i> <span id="downloadText">Download JPEG</span>
-            </button>
-            <button class="action-btn" id="shareImageBtn">
-                <i class="fas fa-share-alt"></i> <span id="shareImageText">Share Image</span>
-            </button>
-            <button class="action-btn" id="shareTextBtn">
-                <i class="fas fa-file-alt"></i> <span id="shareText">Share Text</span>
-            </button>
-            <button class="action-btn" id="copyTextBtn">
-                <i class="fas fa-copy"></i> <span id="copyText">Copy Text</span>
-            </button>
+            <button class="action-btn" id="downloadImageBtn"><i class="fas fa-download"></i> <span id="downloadText">JPEG</span></button>
+            <button class="action-btn" id="shareImageBtn"><i class="fas fa-share-alt"></i> <span id="shareImageText">Share Img</span></button>
+            <button class="action-btn" id="shareTextBtn"><i class="fas fa-file-alt"></i> <span id="shareText">Share Text</span></button>
+            <button class="action-btn" id="copyTextBtn"><i class="fas fa-copy"></i> <span id="copyText">Copy</span></button>
         </div>
 
-        <!-- Footer (auto theme works silently) -->
-        <div style="text-align: center; margin-top: 20px; opacity: 0.8;" id="footerNote">
-            Complete Ramadan Timetable · All Languages · Auto Theme
-        </div>
+        <!-- Footer -->
+        <footer id="footerNote">Ramadan Timetable · All Languages · Auto Theme</footer>
     </div>
 
     <!-- Hidden timetable for image generation -->
@@ -540,169 +615,74 @@
         (function() {
             AOS.init();
 
-            // ==================== COMPLETE TRANSLATIONS FOR ALL 28 LANGUAGES ====================
+            // ==================== COMPLETE TRANSLATIONS ====================
             const translations = {
                 en: {
                     mainTitle: "Ramadan Complete",
                     sehri: "SEHRI", iftar: "IFTAR", subSehri: "last time to eat", subIftar: "break fast time",
-                    daily: "Daily", weekly: "Weekly", monthly: "Monthly (30 days)", custom: "Custom",
-                    from: "From:", to: "To:", applyRange: "Apply Range",
-                    download: "Download JPEG", shareImage: "Share Image", shareText: "Share Text", copyText: "Copy Text",
-                    footer: "Complete Ramadan Timetable · All Languages · Auto Theme",
+                    daily: "Daily", weekly: "Weekly", monthly: "Monthly", custom: "Custom",
+                    from: "From:", to: "To:", applyRange: "Apply",
+                    download: "JPEG", shareImage: "Share Img", shareText: "Share Text", copyText: "Copy",
+                    footer: "Ramadan Timetable · All Languages · Auto Theme",
                     dateHeader: "Date", dayHeader: "Day", sehriHeader: "Sehri", iftarHeader: "Iftar",
-                    searchPlaceholder: "Search city worldwide..."
+                    searchPlaceholder: "Search city..."
                 },
                 ar: {
                     mainTitle: "رمضان الكامل",
                     sehri: "سحور", iftar: "إفطار", subSehri: "آخر وقت للأكل", subIftar: "وقت الإفطار",
-                    daily: "يومي", weekly: "أسبوعي", monthly: "شهري (٣٠ يوم)", custom: "مخصص",
-                    from: "من:", to: "إلى:", applyRange: "تطبيق النطاق",
-                    download: "تحميل JPEG", shareImage: "مشاركة الصورة", shareText: "مشاركة النص", copyText: "نسخ النص",
-                    footer: "جدول رمضان الكامل · جميع اللغات · الوضع التلقائي",
+                    daily: "يومي", weekly: "أسبوعي", monthly: "شهري", custom: "مخصص",
+                    from: "من:", to: "إلى:", applyRange: "تطبيق",
+                    download: "JPEG", shareImage: "مشاركة", shareText: "مشاركة نص", copyText: "نسخ",
+                    footer: "جدول رمضان · جميع اللغات · الوضع التلقائي",
                     dateHeader: "التاريخ", dayHeader: "اليوم", sehriHeader: "السحور", iftarHeader: "الإفطار",
-                    searchPlaceholder: "ابحث عن مدينة في جميع أنحاء العالم..."
+                    searchPlaceholder: "ابحث عن مدينة..."
                 },
                 fr: {
                     mainTitle: "Ramadan Complet",
-                    sehri: "SEHRI", iftar: "IFTAR", subSehri: "dernier repas", subIftar: "rupture du jeûne",
-                    daily: "Quotidien", weekly: "Hebdomadaire", monthly: "Mensuel (30j)", custom: "Personnalisé",
+                    sehri: "SEHRI", iftar: "IFTAR", subSehri: "dernier repas", subIftar: "rupture",
+                    daily: "Jour", weekly: "Semaine", monthly: "Mois", custom: "Perso",
                     from: "De:", to: "À:", applyRange: "Appliquer",
-                    download: "Télécharger JPEG", shareImage: "Partager l'image", shareText: "Partager le texte", copyText: "Copier le texte",
-                    footer: "Calendrier Ramadan Complet · Toutes langues · Thème Auto",
+                    download: "JPEG", shareImage: "Partager Img", shareText: "Partager Texte", copyText: "Copier",
+                    footer: "Calendrier Ramadan · Toutes langues · Thème Auto",
                     dateHeader: "Date", dayHeader: "Jour", sehriHeader: "Sehri", iftarHeader: "Iftar",
-                    searchPlaceholder: "Rechercher une ville dans le monde..."
-                },
-                es: {
-                    mainTitle: "Ramadán Completo",
-                    sehri: "SEHRI", iftar: "IFTAR", subSehri: "última comida", subIftar: "hora de romper el ayuno",
-                    daily: "Diario", weekly: "Semanal", monthly: "Mensual (30 días)", custom: "Personalizado",
-                    from: "Desde:", to: "Hasta:", applyRange: "Aplicar rango",
-                    download: "Descargar JPEG", shareImage: "Compartir imagen", shareText: "Compartir texto", copyText: "Copiar texto",
-                    footer: "Horario completo de Ramadán · Todos los idiomas · Tema automático",
-                    dateHeader: "Fecha", dayHeader: "Día", sehriHeader: "Sehri", iftarHeader: "Iftar",
-                    searchPlaceholder: "Buscar ciudad en todo el mundo..."
-                },
-                de: {
-                    mainTitle: "Ramadan Komplett",
-                    sehri: "SEHRI", iftar: "IFTAR", subSehri: "letzte Mahlzeit", subIftar: "Fastenbrechen",
-                    daily: "Täglich", weekly: "Wöchentlich", monthly: "Monatlich (30 Tage)", custom: "Benutzerdefiniert",
-                    from: "Von:", to: "Bis:", applyRange: "Anwenden",
-                    download: "JPEG herunterladen", shareImage: "Bild teilen", shareText: "Text teilen", copyText: "Text kopieren",
-                    footer: "Vollständiger Ramadan-Zeitplan · Alle Sprachen · Auto-Design",
-                    dateHeader: "Datum", dayHeader: "Tag", sehriHeader: "Sehri", iftarHeader: "Iftar",
-                    searchPlaceholder: "Stadt weltweit suchen..."
+                    searchPlaceholder: "Rechercher ville..."
                 },
                 id: {
                     mainTitle: "Ramadan Lengkap",
-                    sehri: "SAHUR", iftar: "BUKA", subSehri: "waktu terakhir makan", subIftar: "waktu berbuka",
-                    daily: "Harian", weekly: "Mingguan", monthly: "Bulanan (30 hari)", custom: "Kustom",
+                    sehri: "SAHUR", iftar: "BUKA", subSehri: "akhir sahur", subIftar: "waktu berbuka",
+                    daily: "Harian", weekly: "Mingguan", monthly: "Bulanan", custom: "Kustom",
                     from: "Dari:", to: "Ke:", applyRange: "Terapkan",
-                    download: "Unduh JPEG", shareImage: "Bagikan Gambar", shareText: "Bagikan Teks", copyText: "Salin Teks",
-                    footer: "Jadwal Ramadan Lengkap · Semua Bahasa · Tema Otomatis",
+                    download: "JPEG", shareImage: "Bagikan Gmbr", shareText: "Bagikan Teks", copyText: "Salin",
+                    footer: "Jadwal Ramadan · Semua Bahasa · Tema Otomatis",
                     dateHeader: "Tanggal", dayHeader: "Hari", sehriHeader: "Sahur", iftarHeader: "Buka",
-                    searchPlaceholder: "Cari kota di seluruh dunia..."
+                    searchPlaceholder: "Cari kota..."
                 },
                 tr: {
                     mainTitle: "Ramazan Tam",
-                    sehri: "SAHUR", iftar: "İFTAR", subSehri: "son yemek vakti", subIftar: "iftar vakti",
-                    daily: "Günlük", weekly: "Haftalık", monthly: "Aylık (30 gün)", custom: "Özel",
-                    from: "Başlangıç:", to: "Bitiş:", applyRange: "Uygula",
-                    download: "JPEG İndir", shareImage: "Resim Paylaş", shareText: "Metin Paylaş", copyText: "Metni Kopyala",
-                    footer: "Tam Ramazan Takvimi · Tüm Diller · Otomatik Tema",
+                    sehri: "SAHUR", iftar: "İFTAR", subSehri: "son yemek", subIftar: "iftar vakti",
+                    daily: "Günlük", weekly: "Haftalık", monthly: "Aylık", custom: "Özel",
+                    from: "Baş:", to: "Bit:", applyRange: "Uygula",
+                    download: "JPEG", shareImage: "Resim Paylaş", shareText: "Metin Paylaş", copyText: "Kopyala",
+                    footer: "Ramazan Takvimi · Tüm Diller · Otomatik Tema",
                     dateHeader: "Tarih", dayHeader: "Gün", sehriHeader: "Sahur", iftarHeader: "İftar",
-                    searchPlaceholder: "Dünya çapında şehir ara..."
-                },
-                ru: {
-                    mainTitle: "Рамадан Полный",
-                    sehri: "СУХУР", iftar: "ИФТАР", subSehri: "последний прием пищи", subIftar: "время разговения",
-                    daily: "Ежедневно", weekly: "Еженедельно", monthly: "Ежемесячно (30 дней)", custom: "Пользовательский",
-                    from: "От:", to: "До:", applyRange: "Применить",
-                    download: "Скачать JPEG", shareImage: "Поделиться изображением", shareText: "Поделиться текстом", copyText: "Копировать текст",
-                    footer: "Полное расписание Рамадана · Все языки · Авто тема",
-                    dateHeader: "Дата", dayHeader: "День", sehriHeader: "Сухур", iftarHeader: "Ифтар",
-                    searchPlaceholder: "Поиск города по всему миру..."
-                },
-                zh: {
-                    mainTitle: "完整斋月",
-                    sehri: "封斋饭", iftar: "开斋饭", subSehri: "最后用餐时间", subIftar: "开斋时间",
-                    daily: "每日", weekly: "每周", monthly: "每月（30天）", custom: "自定义",
-                    from: "从:", to: "到:", applyRange: "应用范围",
-                    download: "下载JPEG", shareImage: "分享图片", shareText: "分享文本", copyText: "复制文本",
-                    footer: "完整斋月时间表 · 所有语言 · 自动主题",
-                    dateHeader: "日期", dayHeader: "星期", sehriHeader: "封斋", iftarHeader: "开斋",
-                    searchPlaceholder: "搜索世界各地的城市..."
-                },
-                hi: {
-                    mainTitle: "रमजान संपूर्ण",
-                    sehri: "सेहरी", iftar: "इफ्तार", subSehri: "खाने का अंतिम समय", subIftar: "इफ्तार का समय",
-                    daily: "दैनिक", weekly: "साप्ताहिक", monthly: "मासिक (30 दिन)", custom: "कस्टम",
-                    from: "से:", to: "तक:", applyRange: "लागू करें",
-                    download: "JPEG डाउनलोड", shareImage: "छवि साझा करें", shareText: "टेक्स्ट साझा करें", copyText: "टेक्स्ट कॉपी करें",
-                    footer: "संपूर्ण रमजान समय सारिणी · सभी भाषाएँ · स्वचालित थीम",
-                    dateHeader: "तारीख", dayHeader: "दिन", sehriHeader: "सेहरी", iftarHeader: "इफ्तार",
-                    searchPlaceholder: "दुनिया भर के शहर खोजें..."
-                },
-                ur: {
-                    mainTitle: "رمضان مکمل",
-                    sehri: "سحری", iftar: "افطار", subSehri: "کھانے کا آخری وقت", subIftar: "افطار کا وقت",
-                    daily: "یومیہ", weekly: "ہفتہ وار", monthly: "ماہانہ (30 دن)", custom: "اپنی مرضی",
-                    from: "سے:", to: "تک:", applyRange: "حدود کا اطلاق کریں",
-                    download: "JPEG ڈاؤن لوڈ", shareImage: "تصویر شیئر کریں", shareText: "متن شیئر کریں", copyText: "متن کاپی کریں",
-                    footer: "رمضان مکمل نظام الاوقات · تمام زبانیں · خودکار تھیم",
-                    dateHeader: "تاریخ", dayHeader: "دن", sehriHeader: "سحری", iftarHeader: "افطار",
-                    searchPlaceholder: "دنیا بھر کے شہر تلاش کریں..."
-                },
-                ja: {
-                    mainTitle: "ラマダン完全版",
-                    sehri: "サフール", iftar: "イフタール", subSehri: "食事の最終時間", subIftar: "断食明けの時間",
-                    daily: "毎日", weekly: "毎週", monthly: "毎月（30日間）", custom: "カスタム",
-                    from: "開始:", to: "終了:", applyRange: "範囲を適用",
-                    download: "JPEGをダウンロード", shareImage: "画像を共有", shareText: "テキストを共有", copyText: "テキストをコピー",
-                    footer: "完全なラマダン時間割 · 全言語 · 自動テーマ",
-                    dateHeader: "日付", dayHeader: "曜日", sehriHeader: "サフール", iftarHeader: "イフタール",
-                    searchPlaceholder: "世界中の都市を検索..."
-                },
-                fa: {
-                    mainTitle: "رمضان کامل",
-                    sehri: "سحری", iftar: "افطار", subSehri: "آخرین زمان غذا", subIftar: "زمان افطار",
-                    daily: "روزانه", weekly: "هفتگی", monthly: "ماهانه (۳۰ روز)", custom: "سفارشی",
-                    from: "از:", to: "تا:", applyRange: "اعمال محدوده",
-                    download: "دانلود JPEG", shareImage: "اشتراک‌گذاری تصویر", shareText: "اشتراک‌گذاری متن", copyText: "کپی متن",
-                    footer: "جدول زمانی کامل رمضان · همه زبان‌ها · تم خودکار",
-                    dateHeader: "تاریخ", dayHeader: "روز", sehriHeader: "سحری", iftarHeader: "افطار",
-                    searchPlaceholder: "جستجوی شهر در سراسر جهان..."
-                },
-                sw: {
-                    mainTitle: "Ramadan Kamili",
-                    sehri: "SEHRI", iftar: "IFTAR", subSehri: "wakati wa mwisho wa kula", subIftar: "wakati wa kufuturu",
-                    daily: "Kila siku", weekly: "Kila wiki", monthly: "Kila mwezi (siku 30)", custom: "Maalum",
-                    from: "Kutoka:", to: "Hadi:", applyRange: "Tumia masafa",
-                    download: "Pakua JPEG", shareImage: "Shiriki picha", shareText: "Shiriki maandishi", copyText: "Nakili maandishi",
-                    footer: "Ratiba kamili ya Ramadan · Lugha zote · Mandhari otomatiki",
-                    dateHeader: "Tarehe", dayHeader: "Siku", sehriHeader: "Sehri", iftarHeader: "Iftar",
-                    searchPlaceholder: "Tafuta mji duniani kote..."
+                    searchPlaceholder: "Şehir ara..."
                 }
             };
 
-            // All 28 languages with flags
             const languages = [
                 { code: 'en', name: 'English', flag: '🇬🇧' },
                 { code: 'ar', name: 'العربية', flag: '🇸🇦' },
                 { code: 'fr', name: 'Français', flag: '🇫🇷' },
-                { code: 'es', name: 'Español', flag: '🇪🇸' },
-                { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
                 { code: 'id', name: 'Indonesia', flag: '🇮🇩' },
                 { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
+                { code: 'es', name: 'Español', flag: '🇪🇸' },
+                { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
                 { code: 'ru', name: 'Русский', flag: '🇷🇺' },
                 { code: 'zh', name: '中文', flag: '🇨🇳' },
-                { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
-                { code: 'ur', name: 'اردو', flag: '🇵🇰' },
-                { code: 'ja', name: '日本語', flag: '🇯🇵' },
-                { code: 'fa', name: 'فارسی', flag: '🇮🇷' },
-                { code: 'sw', name: 'Kiswahili', flag: '🇹🇿' }
+                { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' }
             ];
 
-            // Populate language dropdown
+            // Populate dropdown
             const langDropdownContent = document.getElementById('langDropdownContent');
             languages.forEach(lang => {
                 const option = document.createElement('div');
@@ -723,16 +703,14 @@
                 document.getElementById('langDropdownContent').classList.remove('show');
             });
 
-            // Current language
             let currentLang = 'en';
             
-            // Set language function - updates ALL UI elements including images
             function setLanguage(code) {
                 currentLang = code;
                 const t = translations[code] || translations.en;
                 const selectedLang = languages.find(l => l.code === code) || languages[0];
                 
-                // Update all UI text
+                // Update UI
                 document.getElementById('mainTitle').innerText = t.mainTitle;
                 document.getElementById('labelSehri').innerText = t.sehri;
                 document.getElementById('labelIftar').innerText = t.iftar;
@@ -753,14 +731,13 @@
                 document.getElementById('selectedLang').innerHTML = `${selectedLang.flag} ${selectedLang.name}`;
                 document.getElementById('cityInput').placeholder = t.searchPlaceholder;
                 
-                // Update image headers (CRITICAL for language in downloaded images)
+                // Update image headers
                 document.getElementById('imageTitle').innerText = t.mainTitle + ' Timetable';
                 document.getElementById('imageDateHeader').innerText = t.dateHeader;
                 document.getElementById('imageDayHeader').innerText = t.dayHeader;
                 document.getElementById('imageSehriHeader').innerText = t.sehriHeader;
                 document.getElementById('imageIftarHeader').innerText = t.iftarHeader;
                 
-                // Re-render timetable with new language headers
                 if (timetableData.length > 0) renderTimetable();
             }
 
@@ -835,7 +812,7 @@
                 }
             });
 
-            // ==================== FAST AUTO THEME (no text visible) ====================
+            // ==================== FAST AUTO THEME ====================
             let currentLat = 21.4225;
             let currentLon = 39.8262;
             
@@ -851,7 +828,6 @@
                         
                         const isDay = now >= sunrise && now < sunset;
                         
-                        // Apply theme instantly
                         if (isDay) {
                             document.body.classList.add('light-mode');
                         } else {
@@ -863,11 +839,10 @@
                 }
             }
 
-            // Update every 20 seconds for quick response
             setInterval(updateThemeFast, 20000);
             updateThemeFast();
 
-            // ==================== FETCH PRAYER TIMES (CORRECTED: Sehri = Imsak, Iftar = Maghrib) ====================
+            // ==================== FETCH PRAYER TIMES ====================
             async function fetchPrayerTimes(lat, lon, date = null) {
                 try {
                     const queryDate = date ? new Date(date) : new Date();
@@ -882,7 +857,6 @@
                     if (data.code === 200) {
                         const timings = data.data.timings;
                         
-                        // CORRECT: Sehri = Imsak (if available) otherwise Fajr, Iftar = Maghrib
                         const sehriTime = timings.Imsak ? timings.Imsak.slice(0,5) : timings.Fajr.slice(0,5);
                         const iftarTime = timings.Maghrib.slice(0,5);
                         
@@ -902,7 +876,7 @@
                 }
             }
 
-            // ==================== TIMETABLE GENERATION ====================
+            // ==================== TIMETABLE GENERATION - FIXED ====================
             let timetableData = [];
             let currentView = 'daily';
             let currentStartDate, currentEndDate;
@@ -912,6 +886,7 @@
                 
                 let start, end;
                 const today = new Date();
+                today.setHours(0, 0, 0, 0);
                 
                 switch(view) {
                     case 'daily':
@@ -926,25 +901,36 @@
                     case 'monthly':
                         start = new Date(today);
                         end = new Date(today);
-                        end.setDate(end.getDate() + 29);
+                        end.setDate(end.getDate() + 29); // Exactly 30 days including today
                         break;
                     case 'custom':
                         if (customStart && customEnd) {
                             start = new Date(customStart);
                             end = new Date(customEnd);
+                            start.setHours(0, 0, 0, 0);
+                            end.setHours(0, 0, 0, 0);
                         } else {
                             return;
                         }
                         break;
                 }
                 
-                currentStartDate = start;
-                currentEndDate = end;
+                // Ensure end date is not before start date
+                if (end < start) {
+                    alert('End date must be after start date');
+                    return;
+                }
+                
+                currentStartDate = new Date(start);
+                currentEndDate = new Date(end);
+                
+                // Calculate total days correctly
+                const totalDays = Math.floor((end - start) / (24 * 60 * 60 * 1000)) + 1;
                 
                 const promises = [];
                 const currentDate = new Date(start);
                 
-                while (currentDate <= end) {
+                for (let i = 0; i < totalDays; i++) {
                     const dateStr = currentDate.toISOString().split('T')[0];
                     promises.push(fetchDayData(currentLat, currentLon, dateStr));
                     currentDate.setDate(currentDate.getDate() + 1);
@@ -965,7 +951,6 @@
                     const data = await response.json();
                     
                     if (data.code === 200) {
-                        // CORRECT: Use Imsak for Sehri if available
                         const sehriTime = data.data.timings.Imsak ? data.data.timings.Imsak.slice(0,5) : data.data.timings.Fajr.slice(0,5);
                         
                         return {
@@ -977,7 +962,7 @@
                         };
                     }
                 } catch (error) {
-                    return null;
+                    console.error('Error fetching day:', error);
                 }
                 return null;
             }
@@ -1006,18 +991,19 @@
                 document.getElementById('timetableDisplay').innerHTML = html;
             }
 
-            // ==================== IMAGE GENERATION (with current language headers) ====================
+            // ==================== IMAGE GENERATION - FIXED ====================
             async function generateImage(share = false) {
+                if (!timetableData || timetableData.length === 0) {
+                    alert('No data to generate image');
+                    return;
+                }
+
                 const t = translations[currentLang] || translations.en;
                 
-                // Update image with current language and data
+                // Update image with current data
                 document.getElementById('imageLocation').innerText = document.getElementById('cityName').innerText;
                 document.getElementById('imageDates').innerText = `${currentStartDate.toLocaleDateString()} - ${currentEndDate.toLocaleDateString()}`;
                 document.getElementById('imageTitle').innerText = t.mainTitle + ' Timetable';
-                document.getElementById('imageDateHeader').innerText = t.dateHeader;
-                document.getElementById('imageDayHeader').innerText = t.dayHeader;
-                document.getElementById('imageSehriHeader').innerText = t.sehriHeader;
-                document.getElementById('imageIftarHeader').innerText = t.iftarHeader;
                 
                 let imageHtml = `<tr>
                     <th>${t.dateHeader}</th>
@@ -1040,30 +1026,59 @@
                 const element = document.getElementById('imageTimetable');
                 
                 try {
-                    const canvas = await html2canvas(element, { scale: 2, backgroundColor: null });
+                    // Ensure element is visible for capture
+                    element.style.position = 'fixed';
+                    element.style.top = '0';
+                    element.style.left = '0';
+                    element.style.zIndex = '-1';
                     
-                    if (share && navigator.share && navigator.canShare && navigator.canShare({ files: [] })) {
-                        canvas.toBlob(blob => {
-                            const file = new File([blob], 'ramadan-timetable.png', { type: 'image/png' });
-                            navigator.share({
-                                title: 'Ramadan Timetable',
-                                files: [file]
-                            }).catch(() => {
-                                // Fallback to download if share fails
+                    const canvas = await html2canvas(element, { 
+                        scale: 2, 
+                        backgroundColor: '#0e1f2b',
+                        logging: false,
+                        allowTaint: true,
+                        useCORS: true
+                    });
+                    
+                    // Hide it again
+                    element.style.position = 'fixed';
+                    element.style.top = '-9999px';
+                    element.style.left = '-9999px';
+                    
+                    if (share && navigator.share) {
+                        // Convert canvas to blob and share
+                        canvas.toBlob(async (blob) => {
+                            try {
+                                const file = new File([blob], 'ramadan-timetable.png', { type: 'image/png' });
+                                await navigator.share({
+                                    title: 'Ramadan Timetable',
+                                    text: `Ramadan timings for ${document.getElementById('cityName').innerText}`,
+                                    files: [file]
+                                });
+                            } catch (shareError) {
+                                console.log('Share cancelled or failed, falling back to download');
+                                // Fallback to download
                                 const link = document.createElement('a');
                                 link.download = `ramadan-timetable-${currentView}-${new Date().toISOString().split('T')[0]}.jpeg`;
                                 link.href = canvas.toDataURL('image/jpeg', 0.9);
                                 link.click();
-                            });
-                        });
+                            }
+                        }, 'image/png');
                     } else {
+                        // Download directly
                         const link = document.createElement('a');
                         link.download = `ramadan-timetable-${currentView}-${new Date().toISOString().split('T')[0]}.jpeg`;
                         link.href = canvas.toDataURL('image/jpeg', 0.9);
                         link.click();
                     }
                 } catch (error) {
+                    console.error('Image generation error:', error);
                     alert('Error generating image. Please try again.');
+                    
+                    // Reset element position
+                    element.style.position = 'fixed';
+                    element.style.top = '-9999px';
+                    element.style.left = '-9999px';
                 }
             }
 
@@ -1115,6 +1130,8 @@
                     document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
                     document.getElementById('customViewBtn').classList.add('active');
                     generateTimetable('custom', start, end);
+                } else {
+                    alert('Please select both start and end dates');
                 }
             });
 
@@ -1124,9 +1141,15 @@
             document.getElementById('shareTextBtn').addEventListener('click', () => {
                 const text = generateText();
                 if (navigator.share) {
-                    navigator.share({ title: 'Ramadan Timetable', text: text });
+                    navigator.share({ 
+                        title: 'Ramadan Timetable', 
+                        text: text 
+                    }).catch(() => {
+                        // Fallback to copy
+                        navigator.clipboard.writeText(text).then(() => alert('✅ Text copied!'));
+                    });
                 } else {
-                    alert('Share not supported. Use Copy button.');
+                    navigator.clipboard.writeText(text).then(() => alert('✅ Text copied!'));
                 }
             });
 
@@ -1182,10 +1205,20 @@
                 cityInput.value = 'Mecca';
                 
                 // Set default dates
-                const today = new Date().toISOString().split('T')[0];
-                document.getElementById('startDate').value = today;
-                const nextMonth = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-                document.getElementById('endDate').value = nextMonth;
+                const today = new Date();
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, '0');
+                const day = String(today.getDate()).padStart(2, '0');
+                const todayStr = `${year}-${month}-${day}`;
+                
+                document.getElementById('startDate').value = todayStr;
+                
+                const nextMonth = new Date(today);
+                nextMonth.setDate(nextMonth.getDate() + 30);
+                const nextMonthYear = nextMonth.getFullYear();
+                const nextMonthMonth = String(nextMonth.getMonth() + 1).padStart(2, '0');
+                const nextMonthDay = String(nextMonth.getDate()).padStart(2, '0');
+                document.getElementById('endDate').value = `${nextMonthYear}-${nextMonthMonth}-${nextMonthDay}`;
                 
                 await fetchPrayerTimes(currentLat, currentLon);
                 await generateTimetable('daily');
